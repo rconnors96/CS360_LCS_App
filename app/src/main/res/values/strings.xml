@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Local Coffee Shops</string>
+    <string name="order_coffee_text">Order Coffee</string>
+    <string name="view_orders_text">View Orders</string>
+    <string name="facebook_share_text">Share on Facebook</string>
+    <string name="lcs_title_text">Local Coffee Shops</string>
+    <string name="lcs_logo_description">the LCS logo</string>
+</resources>
