@@ -57,4 +57,9 @@ public class RegisterActivity extends AppCompatActivity {
             }
         } //if fields not empty
     } //register button clicked
+
+    public void onReturnLoginClicked(View view) {
+        Intent intent = new Intent(this, LogInActivity.class);
+        startActivity(intent);
+    }
 }
