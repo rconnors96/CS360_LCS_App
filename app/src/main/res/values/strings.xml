@@ -19,4 +19,6 @@
     <string name="drinks_text">Drinks</string>
     <string name="food_or_drink_text">Food/Drink:</string>
     <string name="menu_item_text">Item:</string>
+    <string name="account_created">Account Successfully Created!</string>
+    <string name="return_to_login">Return to Log In Screen</string>
 </resources>

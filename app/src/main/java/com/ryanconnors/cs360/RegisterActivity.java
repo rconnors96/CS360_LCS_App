@@ -35,22 +35,26 @@ public class RegisterActivity extends AppCompatActivity {
         username = usernameFromEditText.getText().toString();
         password = passwordFromEditText.getText().toString();
 
-        try {
-            DB snappydb = DBFactory.open(this, "userpass");
+        if (!username.equals("") && !password.equals("")){
+            try {
+                DB snappydb = DBFactory.open(this, "userpass");
 
-            if(snappydb.get(username).equals(password)) {
-                TextView accountExistsPopup = findViewById(R.id.account_exists_popup);
-                accountExistsPopup.setVisibility(View.VISIBLE);
-            } else {
-                snappydb.put(username, password);
+                if (snappydb.exists(username)) {
+                    TextView accountExistsPopup = findViewById(R.id.account_exists_popup);
+                    accountExistsPopup.setVisibility(View.VISIBLE);
+                    snappydb.close();
+                } else {
+                    snappydb.put(username, password);
+                    snappydb.close();
+                    Intent intent = new Intent(this, Popup.class);
+                    intent.putExtra("EXTRA_USERNAME", username);
+                    intent.putExtra("EXTRA_PASSWORD", password);
+                    startActivity(intent);
+                }
+            } catch (SnappydbException e) {
+                e.printStackTrace();
+                System.out.println("ERROR CAUGHT");
             }
-            snappydb.close();
-
-            //startActivity(new Intent(RegisterActivity.this, Popup.class))
-
-        } catch (SnappydbException e) {
-            e.printStackTrace();
-        }
-
-    }
+        } //if fields not empty
+    } //register button clicked
 }
