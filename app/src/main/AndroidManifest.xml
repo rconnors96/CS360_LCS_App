@@ -9,13 +9,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".LogInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".OrderCoffee"
+            android:label="@string/order_coffee_text"
+            android:parentActivityName=".MainMenuActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ryanconnors.cs360.MainMenuActivity" />
+        </activity>
+        <activity
+            android:name=".ViewOrders"
+            android:label="@string/view_orders_name"
+            android:parentActivityName=".MainMenuActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ryanconnors.cs360.MainMenuActivity" />
+        </activity>
+        <activity android:name=".MainMenuActivity" />
     </application>
 
 </manifest>
