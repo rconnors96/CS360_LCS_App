@@ -37,15 +37,15 @@ public class RegisterActivity extends AppCompatActivity {
 
         if (!username.equals("") && !password.equals("")){
             try {
-                DB snappydb = DBFactory.open(this, "userpass");
+                DB userpassDB = DBFactory.open(this, "userpass");
 
-                if (snappydb.exists(username)) {
+                if (userpassDB.exists(username)) {
                     TextView accountExistsPopup = findViewById(R.id.account_exists_popup);
                     accountExistsPopup.setVisibility(View.VISIBLE);
-                    snappydb.close();
+                    userpassDB.close();
                 } else {
-                    snappydb.put(username, password);
-                    snappydb.close();
+                    userpassDB.put(username, password);
+                    userpassDB.close();
                     Intent intent = new Intent(this, Popup.class);
                     intent.putExtra("EXTRA_USERNAME", username);
                     intent.putExtra("EXTRA_PASSWORD", password);

@@ -8,7 +8,6 @@ import android.view.View;
 
 public class OrderCoffee extends AppCompatActivity {
     private Intent intent;
-    private String[] menuType = {"Food", "Drinks"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
