@@ -21,4 +21,8 @@
     <string name="menu_item_text">Item:</string>
     <string name="account_created">Account Successfully Created!</string>
     <string name="return_to_login">Return to Log In Screen</string>
+    <string name="order_menu">Order Menu</string>
+    <string name="small">Small</string>
+    <string name="medium">Medium</string>
+    <string name="large">Large</string>
 </resources>

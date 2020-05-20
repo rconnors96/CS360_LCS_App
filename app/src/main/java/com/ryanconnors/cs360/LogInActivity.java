@@ -24,7 +24,40 @@ public class LogInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
+        if (isFirstLaunch()) {
+            addAdminCredentials();
+        }
     }
+
+    public boolean isFirstLaunch() {
+        try {
+            DB firstLaunchDB = DBFactory.open(this, "firstLaunch");
+
+            if (!firstLaunchDB.exists("firstLaunch")) {
+                firstLaunchDB.close();
+                return true;
+            } else {
+                firstLaunchDB.close();
+                return false;
+            }
+        } catch (SnappydbException e) {
+            e.printStackTrace();
+            System.out.println("ERROR CAUGHT");
+        }
+        return false;
+    }
+
+    private void addAdminCredentials() {
+        try {
+            DB userpassDB = DBFactory.open(this, "userpass");
+            userpassDB.put("admin", "admin");
+            userpassDB.close();
+        } catch (SnappydbException e) {
+            e.printStackTrace();
+            System.out.println("ERROR CAUGHT");
+        }
+    }
+
 
     public void onLogInButtonClicked(View view) {
         usernameFromEditText = findViewById(R.id.username_entry);
@@ -54,7 +87,7 @@ public class LogInActivity extends AppCompatActivity {
                 }
             } catch (SnappydbException e) {
                 e.printStackTrace();
-                System.out.println("ERROR CAUGHT");
+                System.out.println("ERROR CAUGHT LogInActivity line 89");
             }
         }
 
