@@ -14,15 +14,21 @@
     <string name="register_menu_title">Register a New Account</string>
     <string name="account_exists_popup">Account with those credentials already exists. Please try another username/password combination.</string>
     <string name="login_title"> Log In</string>
-    <string name="test_popup">CLICKED</string>
+    <string name="test_popup">test</string>
+    <string name="clicked_popup">clicked</string>
     <string name="food_text">Food</string>
     <string name="drinks_text">Drinks</string>
     <string name="food_or_drink_text">Food/Drink:</string>
     <string name="menu_item_text">Item:</string>
     <string name="account_created">Account Successfully Created!</string>
     <string name="return_to_login">Return to Log In Screen</string>
-    <string name="order_menu">Order Menu</string>
+    <string name="order_menu_title">Menu</string>
     <string name="small">Small</string>
     <string name="medium">Medium</string>
     <string name="large">Large</string>
+    <string name="select_item_button">Select</string>
+    <string name="shopping_cart">View Your Order</string>
+    <string name="total">Total:</string>
+    <string name="submit_order">Submit Order</string>
+    <string name="zero_dollars">$0.00</string>
 </resources>

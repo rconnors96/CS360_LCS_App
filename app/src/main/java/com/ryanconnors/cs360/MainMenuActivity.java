@@ -49,21 +49,21 @@ public class MainMenuActivity extends AppCompatActivity {
 
     private void createMenuTable() {
         menuDB = new LcsSQLiteHandler(this).getWritableDatabase();
-        addMenuItem(getMenuContentValues("001", "Drink", "Hot Coffee", "s", 1.00));
-        addMenuItem(getMenuContentValues("002", "Drink", "Hot Coffee", "m", 1.50));
-        addMenuItem(getMenuContentValues("003", "Drink", "Hot Coffee", "l", 2.00));
-        addMenuItem(getMenuContentValues("004", "Drink", "Iced Coffee", "s", 1.25));
-        addMenuItem(getMenuContentValues("005", "Drink", "Iced Coffee", "m", 1.75));
-        addMenuItem(getMenuContentValues("006", "Drink", "Iced Coffee", "l", 2.25));
-        addMenuItem(getMenuContentValues("007", "Drink", "Hot Tea", "s", 1.25));
-        addMenuItem(getMenuContentValues("008", "Drink", "Hot Tea", "m", 1.75));
-        addMenuItem(getMenuContentValues("009", "Drink", "Hot Tea", "l", 2.25));
-        addMenuItem(getMenuContentValues("010", "Drink", "Iced Tea", "s", 1.50));
-        addMenuItem(getMenuContentValues("011", "Drink", "Iced Tea", "m", 2.00));
-        addMenuItem(getMenuContentValues("012", "Drink", "Iced Tea", "l", 2.50));
-        addMenuItem(getMenuContentValues("013", "Food", "Donut", "", 1.50));
-        addMenuItem(getMenuContentValues("014", "Food", "Bagel", "", 2.00));
-        addMenuItem(getMenuContentValues("015", "Food", "Egg Sandwich", "", 3.00));
+        addMenuItem(getMenuContentValues("000", "Drink", "Hot Coffee", "s", 1.00));
+        addMenuItem(getMenuContentValues("001", "Drink", "Hot Coffee", "m", 1.50));
+        addMenuItem(getMenuContentValues("002", "Drink", "Hot Coffee", "l", 2.00));
+        addMenuItem(getMenuContentValues("003", "Drink", "Iced Coffee", "s", 1.25));
+        addMenuItem(getMenuContentValues("004", "Drink", "Iced Coffee", "m", 1.75));
+        addMenuItem(getMenuContentValues("005", "Drink", "Iced Coffee", "l", 2.25));
+        addMenuItem(getMenuContentValues("006", "Drink", "Hot Tea", "s", 1.25));
+        addMenuItem(getMenuContentValues("007", "Drink", "Hot Tea", "m", 1.75));
+        addMenuItem(getMenuContentValues("008", "Drink", "Hot Tea", "l", 2.25));
+        addMenuItem(getMenuContentValues("009", "Drink", "Iced Tea", "s", 1.50));
+        addMenuItem(getMenuContentValues("010", "Drink", "Iced Tea", "m", 2.00));
+        addMenuItem(getMenuContentValues("011", "Drink", "Iced Tea", "l", 2.50));
+        addMenuItem(getMenuContentValues("012", "Food", "Donut", "", 1.50));
+        addMenuItem(getMenuContentValues("013", "Food", "Bagel", "", 2.00));
+        addMenuItem(getMenuContentValues("014", "Food", "Egg Sandwich", "", 3.00));
     }
 
     private static ContentValues getMenuContentValues(String menu_id, String type, String item_name, String size,

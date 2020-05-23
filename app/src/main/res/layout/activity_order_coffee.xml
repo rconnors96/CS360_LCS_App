@@ -8,93 +8,77 @@
     tools:context=".OrderCoffee" >
 
     <TextView
-        android:id="@+id/menu_item_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginBottom="11dp"
-        android:text="@string/menu_item_text"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/menu_item_spinner"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Spinner
-        android:id="@+id/menu_item_spinner"
-        style="@style/Widget.AppCompat.Spinner.Underlined"
-        android:layout_width="361dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="284dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu_textview" />
-
-    <TextView
         android:id="@+id/menu_textview"
-        android:layout_width="165dp"
-        android:layout_height="42dp"
+        android:layout_width="79dp"
+        android:layout_height="41dp"
         android:layout_marginStart="123dp"
         android:layout_marginLeft="123dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="123dp"
         android:layout_marginRight="123dp"
         android:fontFamily="casual"
-        android:text="@string/order_menu"
+        android:text="@string/order_menu_title"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Spinner
-        android:id="@+id/food_drink_spinner"
-        style="@style/Widget.AppCompat.Spinner.Underlined"
-        android:layout_width="361dp"
-        android:layout_height="44dp"
+    <Button
+        android:id="@+id/finalize_order_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:text="@string/submit_order"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_total_textview" />
+
+    <TextView
+        android:id="@+id/edit_total_textview"
+        android:layout_width="67dp"
+        android:layout_height="23dp"
         android:layout_marginStart="23dp"
         android:layout_marginLeft="23dp"
-        android:layout_marginTop="181dp"
+        android:layout_marginTop="51dp"
+        android:text="@string/zero_dollars"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/total_textview"
+        app:layout_constraintTop_toBottomOf="@+id/menu_items_listview" />
+
+    <TextView
+        android:id="@+id/total_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="140dp"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/total"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menu_items_listview" />
+
+    <ListView
+        android:id="@+id/menu_items_listview"
+        android:layout_width="393dp"
+        android:layout_height="271dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginTop="50dp"
+        android:choiceMode="singleChoice"
+        android:listSelector="@drawable/list_view_selector"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/menu_textview" />
 
-    <TextView
-        android:id="@+id/food_drink_textview"
+    <Button
+        android:id="@+id/shopping_cart_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="21dp"
-        android:layout_marginLeft="21dp"
-        android:layout_marginBottom="18dp"
-        android:text="@string/food_or_drink_text"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/food_drink_spinner"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <RadioGroup
-        android:layout_width="369dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="26dp"
-        android:orientation="horizontal"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="116dp"
+        android:text="@string/shopping_cart"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu_item_spinner">
+        app:layout_constraintTop_toBottomOf="@+id/menu_items_listview" />
 
-        <RadioButton
-            android:id="@+id/radioButton"
-            android:layout_width="122dp"
-            android:layout_height="wrap_content"
-            android:text="@string/small" />
-
-        <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="120dp"
-            android:layout_height="match_parent"
-            android:text="@string/medium" />
-
-        <RadioButton
-            android:id="@+id/radioButton3"
-            android:layout_width="103dp"
-            android:layout_height="match_parent"
-            android:text="@string/large" />
-    </RadioGroup>
 </androidx.constraintlayout.widget.ConstraintLayout>

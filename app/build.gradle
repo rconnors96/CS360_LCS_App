@@ -37,4 +37,5 @@ dependencies {
     implementation 'com.snappydb:snappydb-lib:0.4.0'
     implementation 'com.esotericsoftware.kryo:kryo:2.24.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
 }

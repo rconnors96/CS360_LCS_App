@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="foodDrink">
+        <item>Select food or drink</item>
+        <item>Food</item>
+        <item>Drink</item>
+    </string-array>
+</resources>

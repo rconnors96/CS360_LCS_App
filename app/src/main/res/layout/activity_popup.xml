@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FBCD89"
-    tools:context=".Popup" >
+    tools:context=".RegisterSuccessPopup" >
 
     <TextView
         android:id="@+id/account_created"

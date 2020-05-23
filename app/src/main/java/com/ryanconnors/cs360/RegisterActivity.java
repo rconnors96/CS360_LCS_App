@@ -2,17 +2,14 @@ package com.ryanconnors.cs360;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.snappydb.DB;
 import com.snappydb.DBFactory;
-import com.snappydb.SnappyDB;
 import com.snappydb.SnappydbException;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -46,7 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
                 } else {
                     userpassDB.put(username, password);
                     userpassDB.close();
-                    Intent intent = new Intent(this, Popup.class);
+                    Intent intent = new Intent(this, RegisterSuccessPopup.class);
                     intent.putExtra("EXTRA_USERNAME", username);
                     intent.putExtra("EXTRA_PASSWORD", password);
                     startActivity(intent);
