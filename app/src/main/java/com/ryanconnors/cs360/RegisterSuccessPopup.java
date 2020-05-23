@@ -13,7 +13,7 @@ public class RegisterSuccessPopup extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_popup);
+        setContentView(R.layout.activity_registered_success_popup);
 
         DisplayMetrics displayMetrics =  new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);

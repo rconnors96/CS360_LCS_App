@@ -30,5 +30,9 @@
     <string name="shopping_cart">View Your Order</string>
     <string name="total">Total:</string>
     <string name="submit_order">Submit Order</string>
-    <string name="zero_dollars">$0.00</string>
+    <string name="dollar_amount">$%.2f</string>
+    <string name="add_selected_item">Add Selected Item</string>
+    <string name="shopping_cart_title">Your Order:</string>
+    <string name="return_to_orders">Return to Order Screen</string>
+    <string name="cart_empty">Your order is currently empty.</string>
 </resources>

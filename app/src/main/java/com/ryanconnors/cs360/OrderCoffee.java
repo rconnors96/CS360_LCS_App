@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ContentValues;
+import android.content.Intent;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -26,23 +28,36 @@ public class OrderCoffee extends AppCompatActivity{
     private SQLiteDatabase ordersDB;
     private List<MenuItem> menuItems;
     private String[] menuItemNames;
-    private String username, password;
+    private String username, password, itemNameSelected;
+    private double total;
+    private List<MenuItem> shoppingCart;
+    private TextView editTotal;
+    private Resources res;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_coffee);
+
+        //initialize shopping cart
+        shoppingCart = new ArrayList<>();
+
+        //get username
         username = getIntent().getStringExtra("EXTRA_USERNAME");
-        password = getIntent().getStringExtra("EXTRA_PASSWORD");
 
         //get writable orders database
         ordersDB = new LcsSQLiteHandler(this).getWritableDatabase();
+
+        //get Resources
+        res = this.getResources();
 
         //get all items on menu, then get the unique names and put them in a String array
         menuItems = getListMenuItems();
         menuItemNames = getMenuItemNames(menuItems);
         ListView menuListView = findViewById(R.id.menu_items_listview);
+        editTotal = findViewById(R.id.edit_total_textview);
+        editTotal.setText(String.format(res.getString(R.string.dollar_amount), 0.00));
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, menuItemNames);
 
@@ -50,9 +65,40 @@ public class OrderCoffee extends AppCompatActivity{
         menuListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String itemSelected = (String) parent.getItemAtPosition(position);
+                itemNameSelected = (String) parent.getItemAtPosition(position);
             }
         });
+    }
+
+
+    public void onShoppingCartClicked(View view) {
+        Intent intent = new Intent(this, ShoppingCartPopup.class);
+        intent.putExtra("EXTRA_ITEM_LIST", getAllItemNames(shoppingCart));
+        startActivity(intent);
+    }
+
+
+    public void onAddSelectedItemClicked(View view) {
+        for (MenuItem selectedItem : menuItems) {
+            if (itemNameSelected.equals(selectedItem.getITEM_NAME())) {
+                shoppingCart.add(selectedItem);
+                total += selectedItem.getPRICE();
+            }
+        }
+        editTotal.setText(String.format(getResources().getString(R.string.dollar_amount), total));
+    }
+
+
+
+    private String[] getAllItemNames(List<MenuItem> menuItems) {
+        ArrayList<String> itemNames = new ArrayList<>();
+
+        for (MenuItem mItem : menuItems) {
+            itemNames.add(mItem.getITEM_NAME());
+        }
+
+        String[] items = new String[itemNames.size()];
+        return itemNames.toArray(items);
     }
 
 
@@ -97,8 +143,7 @@ public class OrderCoffee extends AppCompatActivity{
                     cursor.getString(0),
                     cursor.getString(1),
                     cursor.getString(2),
-                    cursor.getString(3),
-                    cursor.getDouble(4)
+                    cursor.getDouble(3)
             ));
         }
         return menuItems;

@@ -22,7 +22,6 @@ public class LcsSQLiteHandler extends SQLiteOpenHelper {
                 MenuTable.Cols.MENU_ID + " primary key, " +
                 MenuTable.Cols.TYPE + ", " +
                 MenuTable.Cols.ITEM_NAME + ", " +
-                MenuTable.Cols.SIZE + ", " +
                 MenuTable.Cols.PRICE + ")"
         );
 

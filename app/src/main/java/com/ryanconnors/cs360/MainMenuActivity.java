@@ -43,36 +43,26 @@ public class MainMenuActivity extends AppCompatActivity {
     public void onOrderCoffeeButtonClicked(View view) {
         intent = new Intent(this, OrderCoffee.class);
         intent.putExtra("EXTRA_USERNAME", username);
-        intent.putExtra("EXTRA_PASSWORD", password);
         startActivity(intent);
     }
 
     private void createMenuTable() {
         menuDB = new LcsSQLiteHandler(this).getWritableDatabase();
-        addMenuItem(getMenuContentValues("000", "Drink", "Hot Coffee", "s", 1.00));
-        addMenuItem(getMenuContentValues("001", "Drink", "Hot Coffee", "m", 1.50));
-        addMenuItem(getMenuContentValues("002", "Drink", "Hot Coffee", "l", 2.00));
-        addMenuItem(getMenuContentValues("003", "Drink", "Iced Coffee", "s", 1.25));
-        addMenuItem(getMenuContentValues("004", "Drink", "Iced Coffee", "m", 1.75));
-        addMenuItem(getMenuContentValues("005", "Drink", "Iced Coffee", "l", 2.25));
-        addMenuItem(getMenuContentValues("006", "Drink", "Hot Tea", "s", 1.25));
-        addMenuItem(getMenuContentValues("007", "Drink", "Hot Tea", "m", 1.75));
-        addMenuItem(getMenuContentValues("008", "Drink", "Hot Tea", "l", 2.25));
-        addMenuItem(getMenuContentValues("009", "Drink", "Iced Tea", "s", 1.50));
-        addMenuItem(getMenuContentValues("010", "Drink", "Iced Tea", "m", 2.00));
-        addMenuItem(getMenuContentValues("011", "Drink", "Iced Tea", "l", 2.50));
-        addMenuItem(getMenuContentValues("012", "Food", "Donut", "", 1.50));
-        addMenuItem(getMenuContentValues("013", "Food", "Bagel", "", 2.00));
-        addMenuItem(getMenuContentValues("014", "Food", "Egg Sandwich", "", 3.00));
+        addMenuItem(getMenuContentValues("000", "Drink", "Hot Coffee", 1.00));
+        addMenuItem(getMenuContentValues("001", "Drink", "Iced Coffee",  1.25));
+        addMenuItem(getMenuContentValues("002", "Drink", "Hot Tea",  1.25));
+        addMenuItem(getMenuContentValues("003", "Drink", "Iced Tea",  1.50));
+        addMenuItem(getMenuContentValues("004", "Food", "Donut", 1.50));
+        addMenuItem(getMenuContentValues("005", "Food", "Bagel", 2.00));
+        addMenuItem(getMenuContentValues("006adm", "Food", "Egg Sandwich", 3.00));
     }
 
-    private static ContentValues getMenuContentValues(String menu_id, String type, String item_name, String size,
+    private static ContentValues getMenuContentValues(String menu_id, String type, String item_name,
                                                       double price) {
         ContentValues values = new ContentValues();
         values.put(LcsSQLiteSchema.MenuTable.Cols.MENU_ID, menu_id);
         values.put(LcsSQLiteSchema.MenuTable.Cols.TYPE, type);
         values.put(LcsSQLiteSchema.MenuTable.Cols.ITEM_NAME, item_name);
-        values.put(LcsSQLiteSchema.MenuTable.Cols.SIZE, size);
         values.put(LcsSQLiteSchema.MenuTable.Cols.PRICE, price);
 
         return values;
