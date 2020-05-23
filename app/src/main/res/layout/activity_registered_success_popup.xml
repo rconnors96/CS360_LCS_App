@@ -68,7 +68,7 @@
         app:layout_constraintTop_toBottomOf="@+id/account_created" />
 
     <Button
-        android:id="@+id/return_to_login_button"
+        android:id="@+id/return_to_orders_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"

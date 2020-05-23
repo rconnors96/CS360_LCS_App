@@ -8,7 +8,7 @@
     tools:context=".RegisterActivity">
 
     <Button
-        android:id="@+id/return_to_login_button"
+        android:id="@+id/return_to_orders_button"
         android:layout_width="214dp"
         android:layout_height="51dp"
         android:layout_marginStart="100dp"

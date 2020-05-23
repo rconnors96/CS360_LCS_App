@@ -27,35 +27,35 @@
         android:id="@+id/finalize_order_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginRight="28dp"
+        android:layout_marginTop="51dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginRight="26dp"
         android:text="@string/submit_order"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_total_textview" />
-
-    <TextView
-        android:id="@+id/edit_total_textview"
-        android:layout_width="67dp"
-        android:layout_height="23dp"
-        android:layout_marginStart="23dp"
-        android:layout_marginLeft="23dp"
-        android:layout_marginTop="51dp"
-        android:text="@string/zero_dollars"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/total_textview"
-        app:layout_constraintTop_toBottomOf="@+id/menu_items_listview" />
+        app:layout_constraintTop_toBottomOf="@+id/total_textview" />
 
     <TextView
         android:id="@+id/total_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="140dp"
-        android:layout_marginLeft="140dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginLeft="65dp"
+        android:layout_marginTop="41dp"
         android:text="@string/total"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/add_selected_item_button"
+        app:layout_constraintTop_toBottomOf="@+id/menu_items_listview" />
+
+    <TextView
+        android:id="@+id/edit_total_textview"
+        android:layout_width="67dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginTop="42dp"
+        android:text="@string/dollar_amount"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/total_textview"
         app:layout_constraintTop_toBottomOf="@+id/menu_items_listview" />
 
     <ListView
@@ -74,10 +74,23 @@
         android:id="@+id/shopping_cart_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginLeft="28dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="116dp"
+        android:onClick="onShoppingCartClicked"
         android:text="@string/shopping_cart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menu_items_listview" />
+
+    <Button
+        android:id="@+id/add_selected_item_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginTop="28dp"
+        android:onClick="onAddSelectedItemClicked"
+        android:text="@string/add_selected_item"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/menu_items_listview" />
 

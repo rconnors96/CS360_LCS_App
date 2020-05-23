@@ -11,7 +11,6 @@ class LcsSQLiteSchema {
             static final String MENU_ID = "id";
             static final String TYPE = "type"; //food or drink
             static final String ITEM_NAME = "item_name";
-            static final String SIZE = "size";
             static final String PRICE = "price";
         }
     }
