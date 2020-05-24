@@ -25,11 +25,13 @@
 
     <ListView
         android:id="@+id/orders_listview"
-        android:layout_width="399dp"
-        android:layout_height="387dp"
+        android:layout_width="394dp"
+        android:layout_height="306dp"
         android:layout_marginStart="11dp"
         android:layout_marginLeft="11dp"
         android:layout_marginTop="123dp"
+        android:choiceMode="singleChoice"
+        android:listSelector="@drawable/list_view_selector"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/your_orders_textview" />
 
@@ -67,4 +69,18 @@
         android:text="@string/username_hint"
         app:layout_constraintStart_toEndOf="@+id/vieworders_username"
         app:layout_constraintTop_toBottomOf="@+id/your_orders_textview" />
+
+    <Button
+        android:id="@+id/view_this_order_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="135dp"
+        android:layout_marginLeft="135dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="158dp"
+        android:onClick="onViewThisOrderClicked"
+        android:text="@string/view_this_order"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/orders_listview" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -43,4 +43,7 @@
     <string name="your_orders">Your Orders</string>
     <string name="no_existing_orders">You don\'t currently have any orders</string>
     <string name="username">Username:</string>
+    <string name="view_this_order">View This Order</string>
+    <string name="order_number">Order #%d</string>
+    <string name="return_">Return</string>
 </resources>
