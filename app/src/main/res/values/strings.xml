@@ -35,4 +35,15 @@
     <string name="shopping_cart_title">Your Order:</string>
     <string name="return_to_orders">Return to Order Screen</string>
     <string name="cart_empty">Your order is currently empty.</string>
+    <string name="order_submitted">Order Submitted!</string>
+    <string name="return_main_menu">Return to Main Menu</string>
+    <string name="date">Date:</string>
+    <string name="location">Location:</string>
+    <string name="default_string">default</string>
+    <string name="your_orders">Your Orders</string>
+    <string name="no_existing_orders">You don\'t currently have any orders</string>
+    <string name="username">Username:</string>
+    <string name="view_this_order">View This Order</string>
+    <string name="order_number">Order #%d</string>
+    <string name="return_">Return</string>
 </resources>
