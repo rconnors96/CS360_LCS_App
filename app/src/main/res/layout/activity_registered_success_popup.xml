@@ -8,7 +8,7 @@
     tools:context=".RegisterSuccessPopup" >
 
     <TextView
-        android:id="@+id/account_created"
+        android:id="@+id/your_order_textview"
         android:layout_width="262dp"
         android:layout_height="63dp"
         android:layout_marginStart="44dp"

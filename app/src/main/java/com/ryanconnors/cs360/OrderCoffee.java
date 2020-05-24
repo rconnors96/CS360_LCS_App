@@ -8,6 +8,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -20,8 +21,14 @@ import android.widget.Toast;
 import com.ryanconnors.cs360.LcsSQLiteSchema.OrdersTable;
 
 import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 
 public class OrderCoffee extends AppCompatActivity{
@@ -71,9 +78,92 @@ public class OrderCoffee extends AppCompatActivity{
     }
 
 
+    private List<String> getShoppingCartDisplay(List<MenuItem> allItems) {
+        String[] allItemsAsArray = getAllItemNames(allItems);
+        Map<String, Integer> frequencyMap = new HashMap<>();
+        List<String> shoppingCartDisplay = new ArrayList<>();
+
+        if(allItemsAsArray.length == 0) {
+            List<String> emptyList = new ArrayList<>();
+            return emptyList;
+        } else {
+            for (String s : allItemsAsArray) {
+                Integer count = frequencyMap.get(s);
+                if (count == null) {
+                    count = 0;
+                }
+                frequencyMap.put(s, count +1);
+            }
+            for (Map.Entry<String,Integer> entry : frequencyMap.entrySet()) {
+                shoppingCartDisplay.add(entry.getKey() + "   x" + entry.getValue());
+            }
+        }
+        return shoppingCartDisplay;
+    }
+
+
+    public void onSubmitOrderClicked(View view) {
+        int orderID = 0;
+        LcsSQLiteHandler dbHandler = new LcsSQLiteHandler(this);
+        String date = new SimpleDateFormat("MM-dd-yyyy", Locale.getDefault()).format(new Date());
+
+        if(shoppingCart.size() == 0) {
+            onShoppingCartClicked(view);
+        } else {
+            //DECIDES WHAT THE ORDER_ID SHOULD BE
+            Cursor cursor = getAllDataCursor(OrdersTable.NAME);
+            if (cursor.getCount() == 0) {
+                orderID = 0;
+            } else {
+                Cursor maxValue = dbHandler.getMaxValue(ordersDB, OrdersTable.NAME, OrdersTable.Cols.ORDER_ID);
+                maxValue.moveToFirst();
+                orderID = maxValue.getInt(0) + 1;
+            }
+
+            //INSERTS SHOPPING CART ITEMS INTO ORDERS TABLE
+            for (MenuItem currentItem : shoppingCart) {
+                addOrdersItem(getOrdersContentValues(orderID, currentItem.getMENU_ID(),username,date));
+            }
+            dbHandler.close();
+
+
+            List<String> shoppingCartDisplayAsList = getShoppingCartDisplay(shoppingCart);
+            String[] extraShoppingCartDisplay = new String[shoppingCartDisplayAsList.size()];
+            extraShoppingCartDisplay = shoppingCartDisplayAsList.toArray(extraShoppingCartDisplay);
+            Intent intent = new Intent(this, OrderSubmittedPopup.class);
+            intent.putExtra("EXTRA_SHOPPING_CART_DISPLAY", extraShoppingCartDisplay);
+            intent.putExtra("EXTRA_USERNAME", username);
+            intent.putExtra("EXTRA_DATE", date);
+            startActivity(intent);
+        }
+
+    }
+
+
+    private ContentValues getOrdersContentValues(int order_id, String menu_id, String username, String date) {
+        ContentValues values = new ContentValues();
+        values.put(OrdersTable.Cols.ORDER_ID, order_id);
+        values.put(OrdersTable.Cols.MENU_ID, menu_id);
+        values.put(OrdersTable.Cols.USERNAME, username);
+        values.put(OrdersTable.Cols.DATE, date);
+
+        return values;
+    }
+
+    private void addOrdersItem(ContentValues values) {
+        ordersDB.insert(OrdersTable.NAME, null, values);
+    }
+
+
     public void onShoppingCartClicked(View view) {
+        List<String> shoppingCartList = getShoppingCartDisplay(shoppingCart);
+        String[] shoppingCartDisplay = new String[shoppingCartList.size()];
+        shoppingCartDisplay = shoppingCartList.toArray(shoppingCartDisplay);
+
+
+
         Intent intent = new Intent(this, ShoppingCartPopup.class);
-        intent.putExtra("EXTRA_ITEM_LIST", getAllItemNames(shoppingCart));
+        intent.putExtra("EXTRA_SHOPPING_CART_DISPLAY", shoppingCartDisplay);
         startActivity(intent);
     }
 
@@ -112,19 +202,6 @@ public class OrderCoffee extends AppCompatActivity{
 
         String[] items = new String[itemNames.size()];
         return itemNames.toArray(items);
-    }
-
-
-    private void getOrdersContentValues(String order_id, String menu_id, String username, String date) {
-        ContentValues values = new ContentValues();
-        values.put(OrdersTable.Cols.ORDER_ID, order_id);
-        values.put(OrdersTable.Cols.MENU_ID, menu_id);
-        values.put(OrdersTable.Cols.USERNAME, username);
-        values.put(OrdersTable.Cols.DATE, date);
-    }
-
-    private void addOrdersItem(ContentValues values) {
-        ordersDB.insert(OrdersTable.NAME, null, values);
     }
 
     public Cursor getAllDataCursor(String tableName) {

@@ -17,7 +17,6 @@ public class MainMenuActivity extends AppCompatActivity {
 
     private Intent intent;
     private String username;
-    private String password;
     private SQLiteDatabase menuDB;
 
     @Override
@@ -25,7 +24,6 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         username = getIntent().getStringExtra("EXTRA_USERNAME");
-        password = getIntent().getStringExtra("EXTRA_PASSWORD");
 
         if (isFirstLaunch()) {
             createMenuTable();
@@ -36,7 +34,6 @@ public class MainMenuActivity extends AppCompatActivity {
     public void onViewOrdersButtonClicked(View view) {
         intent = new Intent(this, ViewOrders.class);
         intent.putExtra("EXTRA_USERNAME", username);
-        intent.putExtra("EXTRA_PASSWORD", password);
         startActivity(intent);
     }
 

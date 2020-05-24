@@ -40,4 +40,10 @@ public class LcsSQLiteHandler extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
+
+    Cursor getMaxValue(SQLiteDatabase db, String tableName, String col) {
+        return db.rawQuery("select MAX(" + col + ") FROM " + tableName,
+                null);
+    }
+
 }

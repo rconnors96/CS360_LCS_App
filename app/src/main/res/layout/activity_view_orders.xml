@@ -8,18 +8,63 @@
     tools:context=".ViewOrders">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="182dp"
-        android:layout_marginLeft="182dp"
-        android:layout_marginTop="255dp"
-        android:layout_marginEnd="152dp"
-        android:layout_marginRight="152dp"
-        android:layout_marginBottom="457dp"
-        android:text="@string/view_orders_text"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/your_orders_textview"
+        android:layout_width="165dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="123dp"
+        android:layout_marginLeft="123dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="123dp"
+        android:layout_marginRight="123dp"
+        android:fontFamily="casual"
+        android:text="@string/your_orders"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:id="@+id/orders_listview"
+        android:layout_width="399dp"
+        android:layout_height="387dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginTop="123dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/your_orders_textview" />
+
+    <TextView
+        android:id="@+id/no_orders_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/no_existing_orders"
+        android:textSize="18sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/orders_listview"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/vieworders_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="123dp"
+        android:layout_marginLeft="123dp"
+        android:layout_marginTop="36dp"
+        android:text="@string/username"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/your_orders_textview" />
+
+    <TextView
+        android:id="@+id/edit_vieworders_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="36dp"
+        android:text="@string/username_hint"
+        app:layout_constraintStart_toEndOf="@+id/vieworders_username"
+        app:layout_constraintTop_toBottomOf="@+id/your_orders_textview" />
 </androidx.constraintlayout.widget.ConstraintLayout>
