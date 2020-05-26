@@ -38,7 +38,7 @@ public class MainMenuActivity extends AppCompatActivity {
     }
 
     public void onOrderCoffeeButtonClicked(View view) {
-        intent = new Intent(this, OrderCoffee.class);
+        intent = new Intent(this, MapsActivity.class);
         intent.putExtra("EXTRA_USERNAME", username);
         startActivity(intent);
     }
