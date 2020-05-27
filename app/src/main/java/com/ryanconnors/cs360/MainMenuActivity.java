@@ -51,7 +51,7 @@ public class MainMenuActivity extends AppCompatActivity {
         addMenuItem(getMenuContentValues("003", "Drink", "Iced Tea",  1.50));
         addMenuItem(getMenuContentValues("004", "Food", "Donut", 1.50));
         addMenuItem(getMenuContentValues("005", "Food", "Bagel", 2.00));
-        addMenuItem(getMenuContentValues("006adm", "Food", "Egg Sandwich", 3.00));
+        addMenuItem(getMenuContentValues("006", "Food", "Egg Sandwich", 3.00));
     }
 
     private static ContentValues getMenuContentValues(String menu_id, String type, String item_name,

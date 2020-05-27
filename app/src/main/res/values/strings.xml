@@ -47,4 +47,7 @@
     <string name="order_number">Order #%d</string>
     <string name="return_">Return</string>
     <string name="title_activity_maps">Map</string>
+    <string name="enter_location">Enter Location:</string>
+    <string name="location_dotdotdot">Location...</string>
+    <string name="go_button">Go</string>
 </resources>
