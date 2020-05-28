@@ -23,6 +23,7 @@ class LcsSQLiteSchema {
             static final String MENU_ID = "menu_id";
             static final String USERNAME = "username";
             static final String DATE = "date";
+            static final String LOCATION = "location";
         }
     }
 

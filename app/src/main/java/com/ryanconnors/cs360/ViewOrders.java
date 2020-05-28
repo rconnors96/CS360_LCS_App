@@ -64,6 +64,13 @@ public class ViewOrders extends AppCompatActivity {
     }
 
 
+    public void onGoBackClicked(View view) {
+        Intent intent = new Intent(this, MainMenuActivity.class);
+        intent.putExtra("EXTRA_USERNAME", username);
+        startActivity(intent);
+    }
+
+
     public void onViewThisOrderClicked(View view) {
         Intent intent = new Intent(this, ViewSpecificOrder.class);
         intent.putExtra("EXTRA_ORDER_ID", thisOrderId);
@@ -152,8 +159,11 @@ public class ViewOrders extends AppCompatActivity {
 
 
     private Cursor getAllRows() {
-        return orderDB.rawQuery("select * from " + OrdersTable.NAME,
+        Cursor allRows = orderDB.rawQuery("select * from " + OrdersTable.NAME +
+                " where " + OrdersTable.Cols.USERNAME + " like '" + username + "'",
                 null);
+        allRows.moveToFirst();
+        return allRows;
     }
 
     private String getDateFromOrderID(int orderID) {

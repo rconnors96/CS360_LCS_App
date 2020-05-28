@@ -3,6 +3,8 @@ package com.ryanconnors.cs360;
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 
@@ -16,6 +18,7 @@ import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.model.TypeFilter;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
@@ -59,7 +62,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 name = place.getName();
 
                 mMap.addMarker(new MarkerOptions().position(latLng).title(name));
-                mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
             }
 
             @Override
@@ -88,6 +91,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         //set zoom preferences
         mMap.setMaxZoomPreference(15);
-        mMap.setMinZoomPreference(10);
     }
 }

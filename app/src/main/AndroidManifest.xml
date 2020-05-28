@@ -46,19 +46,11 @@
         </activity>
         <activity
             android:name=".OrderCoffee"
-            android:label="@string/order_coffee_text"
-            android:parentActivityName=".MainMenuActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ryanconnors.cs360.MainMenuActivity" />
+            android:label="@string/order_coffee_text">
         </activity>
         <activity
             android:name=".ViewOrders"
-            android:label="@string/view_orders_name"
-            android:parentActivityName=".MainMenuActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.ryanconnors.cs360.MainMenuActivity" />
+            android:label="@string/view_orders_name">
         </activity>
         <activity android:name=".MainMenuActivity" />
     </application>
