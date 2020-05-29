@@ -79,7 +79,7 @@ public class OrderCoffee extends AppCompatActivity{
 
 
     public void onGoBackClicked(View view) {
-        Intent intent = new Intent(this, MainMenuActivity.class);
+        Intent intent = new Intent(this, MapsActivity.class);
         intent.putExtra("EXTRA_USERNAME", username);
         startActivity(intent);
     }

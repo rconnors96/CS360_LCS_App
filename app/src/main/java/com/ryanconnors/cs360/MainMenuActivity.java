@@ -38,9 +38,12 @@ public class MainMenuActivity extends AppCompatActivity {
     }
 
     public void onOrderCoffeeButtonClicked(View view) {
-        //MAPS ACTIVITY
-        //intent = new Intent(this, MapsActivity.class);
-        intent = new Intent(this, OrderCoffee.class);
+        //MAP ACTIVITY
+        intent = new Intent(this, MapsActivity.class);
+
+        //ORDERCOFFEE ACTIVITY
+        //intent = new Intent(this, OrderCoffee.class);
+
         intent.putExtra("EXTRA_USERNAME", username);
         startActivity(intent);
     }
