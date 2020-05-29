@@ -25,12 +25,13 @@ public class LcsSQLiteHandler extends SQLiteOpenHelper {
                 MenuTable.Cols.PRICE + ")"
         );
 
-        db.execSQL("create table " + OrdersTable.NAME + "(" +
+        db.execSQL("create table if not exists " + OrdersTable.NAME + "(" +
                 " _id integer primary key autoincrement, " +
                 OrdersTable.Cols.ORDER_ID + ", " +
                 OrdersTable.Cols.MENU_ID + ", " +
                 OrdersTable.Cols.USERNAME + ", " +
                 OrdersTable.Cols.DATE + "," +
+                OrdersTable.Cols.LOCATION + "," +
                 " FOREIGN KEY (" + OrdersTable.Cols.MENU_ID + ") REFERENCES " +
                 MenuTable.NAME + "(" + MenuTable.Cols.MENU_ID + "))"
         );
