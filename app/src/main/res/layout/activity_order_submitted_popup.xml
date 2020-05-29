@@ -11,8 +11,8 @@
         android:id="@+id/order_submitted_textview"
         android:layout_width="185dp"
         android:layout_height="34dp"
-        android:layout_marginStart="94dp"
-        android:layout_marginLeft="94dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginLeft="72dp"
         android:layout_marginTop="76dp"
         android:text="@string/order_submitted"
         android:textSize="24sp"
@@ -23,66 +23,66 @@
         android:id="@+id/order_submitted_cart_list"
         android:layout_width="287dp"
         android:layout_height="148dp"
-        android:layout_marginStart="39dp"
-        android:layout_marginLeft="39dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/order_submitted_textview" />
 
-    <Button
-        android:id="@+id/return_to_main_menu_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="73dp"
-        android:layout_marginLeft="73dp"
-        android:layout_marginTop="8dp"
-        android:onClick="onReturnToMainClicked"
-        android:text="@string/return_main_menu"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_location_textview" />
-
     <TextView
-        android:id="@+id/date_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginLeft="72dp"
+        android:id="@+id/edit_location_textview"
+        android:layout_width="176dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="12dp"
-        android:text="@string/date"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/order_submitted_cart_list" />
-
-    <TextView
-        android:id="@+id/edit_date_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="39dp"
-        android:layout_marginLeft="39dp"
-        android:layout_marginTop="12dp"
-        android:text="@string/date"
-        app:layout_constraintStart_toEndOf="@+id/date_textview"
-        app:layout_constraintTop_toBottomOf="@+id/order_submitted_cart_list" />
+        android:text="@string/default_string"
+        app:layout_constraintStart_toEndOf="@+id/location_textview"
+        app:layout_constraintTop_toBottomOf="@+id/edit_date_textview" />
 
     <TextView
         android:id="@+id/location_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginLeft="72dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="13dp"
         android:text="@string/location"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/date_textview" />
 
     <TextView
-        android:id="@+id/edit_location_textview"
+        android:id="@+id/edit_date_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/default_string"
-        app:layout_constraintStart_toEndOf="@+id/location_textview"
-        app:layout_constraintTop_toBottomOf="@+id/edit_date_textview" />
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/date"
+        app:layout_constraintStart_toEndOf="@+id/date_textview"
+        app:layout_constraintTop_toBottomOf="@+id/order_submitted_cart_list" />
+
+    <TextView
+        android:id="@+id/date_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/order_submitted_cart_list" />
+
+    <Button
+        android:id="@+id/return_to_main_menu_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="68dp"
+        android:layout_marginLeft="68dp"
+        android:layout_marginTop="24dp"
+        android:onClick="onReturnToMainClicked"
+        android:text="@string/return_main_menu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_location_textview" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

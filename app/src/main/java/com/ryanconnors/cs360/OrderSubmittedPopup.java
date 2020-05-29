@@ -11,7 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class OrderSubmittedPopup extends AppCompatActivity {
-    private String username;
+    private String username, location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,16 +26,19 @@ public class OrderSubmittedPopup extends AppCompatActivity {
         getSupportActionBar().hide();
 
         username = getIntent().getStringExtra("EXTRA_USERNAME");
+        location = getIntent().getStringExtra("EXTRA_LOCATION");
         String[] shoppingCartDisplay = getIntent().getStringArrayExtra("EXTRA_SHOPPING_CART_DISPLAY");
         String date = getIntent().getStringExtra("EXTRA_DATE");
 
 
         ListView orderSubmittedListView = findViewById(R.id.order_submitted_cart_list);
         TextView editDate = findViewById(R.id.edit_date_textview);
+        TextView editLocation = findViewById(R.id.edit_location_textview);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, shoppingCartDisplay);
         orderSubmittedListView.setAdapter(adapter);
         editDate.setText(date);
+        editLocation.setText(location);
         }
 
 

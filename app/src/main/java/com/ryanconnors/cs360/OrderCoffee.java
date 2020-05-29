@@ -29,7 +29,7 @@ public class OrderCoffee extends AppCompatActivity{
     private SQLiteDatabase ordersDB;
     private List<MenuItem> menuItems;
     private String[] menuItemNames;
-    private String username, itemNameSelected;
+    private String username, itemNameSelected, location;
     private double total;
     private List<MenuItem> shoppingCart;
     private TextView editTotal;
@@ -40,12 +40,16 @@ public class OrderCoffee extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_coffee);
+        getSupportActionBar().hide();
 
         //initialize shopping cart
         shoppingCart = new ArrayList<>();
 
         //get username
         username = getIntent().getStringExtra("EXTRA_USERNAME");
+
+        //get location
+        location = getIntent().getStringExtra("EXTRA_LOCATION");
 
         //get writable orders database
         ordersDB = new LcsSQLiteHandler(this).getWritableDatabase();
@@ -123,7 +127,7 @@ public class OrderCoffee extends AppCompatActivity{
 
             //INSERTS SHOPPING CART ITEMS INTO ORDERS TABLE
             for (MenuItem currentItem : shoppingCart) {
-                addOrdersItem(getOrdersContentValues(orderID, currentItem.getMENU_ID(),username,date, "default"));
+                addOrdersItem(getOrdersContentValues(orderID, currentItem.getMENU_ID(),username,date, location));
             }
             dbHandler.close();
 
@@ -136,6 +140,7 @@ public class OrderCoffee extends AppCompatActivity{
             intent.putExtra("EXTRA_SHOPPING_CART_DISPLAY", extraShoppingCartDisplay);
             intent.putExtra("EXTRA_USERNAME", username);
             intent.putExtra("EXTRA_DATE", date);
+            intent.putExtra("EXTRA_LOCATION", location);
             startActivity(intent);
         }
 

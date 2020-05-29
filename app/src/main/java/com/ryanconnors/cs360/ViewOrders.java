@@ -35,6 +35,7 @@ public class ViewOrders extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_orders);
+        getSupportActionBar().hide();
 
         ordersList = findViewById(R.id.orders_listview);
         noExistingOrders = findViewById(R.id.no_orders_textview);
