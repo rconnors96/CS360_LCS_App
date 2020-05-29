@@ -1,14 +1,11 @@
 package com.ryanconnors.cs360;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -16,14 +13,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ryanconnors.cs360.LcsSQLiteSchema.OrdersTable;
 
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -35,7 +29,7 @@ public class OrderCoffee extends AppCompatActivity{
     private SQLiteDatabase ordersDB;
     private List<MenuItem> menuItems;
     private String[] menuItemNames;
-    private String username, password, itemNameSelected;
+    private String username, itemNameSelected;
     private double total;
     private List<MenuItem> shoppingCart;
     private TextView editTotal;
