@@ -78,6 +78,13 @@ public class OrderCoffee extends AppCompatActivity{
     }
 
 
+    public void onGoBackClicked(View view) {
+        Intent intent = new Intent(this, MapsActivity.class);
+        intent.putExtra("EXTRA_USERNAME", username);
+        startActivity(intent);
+    }
+
+
     private List<String> getShoppingCartDisplay(List<MenuItem> allItems) {
         String[] allItemsAsArray = getAllItemNames(allItems);
         Map<String, Integer> frequencyMap = new HashMap<>();
@@ -122,7 +129,7 @@ public class OrderCoffee extends AppCompatActivity{
 
             //INSERTS SHOPPING CART ITEMS INTO ORDERS TABLE
             for (MenuItem currentItem : shoppingCart) {
-                addOrdersItem(getOrdersContentValues(orderID, currentItem.getMENU_ID(),username,date));
+                addOrdersItem(getOrdersContentValues(orderID, currentItem.getMENU_ID(),username,date, "default"));
             }
             dbHandler.close();
 
@@ -130,6 +137,7 @@ public class OrderCoffee extends AppCompatActivity{
             List<String> shoppingCartDisplayAsList = getShoppingCartDisplay(shoppingCart);
             String[] extraShoppingCartDisplay = new String[shoppingCartDisplayAsList.size()];
             extraShoppingCartDisplay = shoppingCartDisplayAsList.toArray(extraShoppingCartDisplay);
+            ordersDB.close();
             Intent intent = new Intent(this, OrderSubmittedPopup.class);
             intent.putExtra("EXTRA_SHOPPING_CART_DISPLAY", extraShoppingCartDisplay);
             intent.putExtra("EXTRA_USERNAME", username);
@@ -140,12 +148,13 @@ public class OrderCoffee extends AppCompatActivity{
     }
 
 
-    private ContentValues getOrdersContentValues(int order_id, String menu_id, String username, String date) {
+    private ContentValues getOrdersContentValues(int order_id, String menu_id, String username, String date, String location) {
         ContentValues values = new ContentValues();
         values.put(OrdersTable.Cols.ORDER_ID, order_id);
         values.put(OrdersTable.Cols.MENU_ID, menu_id);
         values.put(OrdersTable.Cols.USERNAME, username);
         values.put(OrdersTable.Cols.DATE, date);
+        values.put(OrdersTable.Cols.LOCATION, location);
 
         return values;
     }

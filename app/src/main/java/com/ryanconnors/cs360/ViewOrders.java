@@ -64,6 +64,13 @@ public class ViewOrders extends AppCompatActivity {
     }
 
 
+    public void onGoBackClicked(View view) {
+        Intent intent = new Intent(this, MainMenuActivity.class);
+        intent.putExtra("EXTRA_USERNAME", username);
+        startActivity(intent);
+    }
+
+
     public void onViewThisOrderClicked(View view) {
         Intent intent = new Intent(this, ViewSpecificOrder.class);
         intent.putExtra("EXTRA_ORDER_ID", thisOrderId);
@@ -128,8 +135,8 @@ public class ViewOrders extends AppCompatActivity {
 
         List<String> newList = new ArrayList<>(list.size());
         for (Integer thisInt : list) {
-            newList.add("ORDER #" + thisInt +
-                    "                    ORDERED ON:" + getDateFromOrderID(thisInt));
+            newList.add(getDateFromOrderID(thisInt) +
+                    "                    Location:" + getLocationFromOrderID(thisInt));
         }
         return newList;
     }
@@ -152,12 +159,22 @@ public class ViewOrders extends AppCompatActivity {
 
 
     private Cursor getAllRows() {
-        return orderDB.rawQuery("select * from " + OrdersTable.NAME,
+        Cursor allRows = orderDB.rawQuery("select * from " + OrdersTable.NAME +
+                " where " + OrdersTable.Cols.USERNAME + " like '%" + username + "%'",
                 null);
+        allRows.moveToFirst();
+        return allRows;
     }
 
     private String getDateFromOrderID(int orderID) {
         Cursor dateFound = orderDB.rawQuery("select date from " + OrdersTable.NAME +
+                " WHERE " + OrdersTable.Cols.ORDER_ID + " = " + orderID, null);
+        dateFound.moveToFirst();
+        return dateFound.getString(0);
+    }
+
+    private String getLocationFromOrderID(int orderID) {
+        Cursor dateFound = orderDB.rawQuery("select location from " + OrdersTable.NAME +
                 " WHERE " + OrdersTable.Cols.ORDER_ID + " = " + orderID, null);
         dateFound.moveToFirst();
         return dateFound.getString(0);

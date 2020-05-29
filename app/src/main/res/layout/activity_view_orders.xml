@@ -7,6 +7,18 @@
     android:background="#FBCD89"
     tools:context=".ViewOrders">
 
+    <Button
+        android:id="@+id/vieworders_goback_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="36dp"
+        android:onClick="onGoBackClicked"
+        android:text="@string/go_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/your_orders_textview"
         android:layout_width="165dp"
