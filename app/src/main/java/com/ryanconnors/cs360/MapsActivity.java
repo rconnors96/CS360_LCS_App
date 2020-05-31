@@ -58,6 +58,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         selectThisLocationButton = findViewById(R.id.select_location_button);
 
         //initialize Places SDK
+        //unused right now
         Places.initialize(this, "AIzaSyDe_V5cEUg95ULogkTBYVdk2XwrEXwcQio");
         placesClient = Places.createClient(this);
 
@@ -70,15 +71,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         autocompleteSupportFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(Place place) {
+                //sets the selected location textview and "select this location" button to invisible
+                //this ensures that they will be invisible to start whenever a new location is selected
+                //this is probably unnecessary
                 editLocationTextview.setVisibility(View.INVISIBLE);
                 selectThisLocationButton.setVisibility(View.INVISIBLE);
+
+                //assigns different elements of the Place selected
                 latLng = place.getLatLng();
                 address = place.getAddress();
                 name = place.getName();
 
+                //moves the marker and camera to the selected location
                 mMap.addMarker(new MarkerOptions().position(latLng).title(name));
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
 
+                //sets the selected location textview text, and makes both that and the button visible
                 editLocationTextview.setText(String.format(res.getString(R.string.display_location), name, address));
                 editLocationTextview.setVisibility(View.VISIBLE);
                 selectThisLocationButton.setVisibility(View.VISIBLE);
