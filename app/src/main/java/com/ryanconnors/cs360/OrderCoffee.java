@@ -29,7 +29,7 @@ public class OrderCoffee extends AppCompatActivity{
     private SQLiteDatabase ordersDB;
     private List<MenuItem> menuItems;
     private String[] menuItemNames;
-    private String username, itemNameSelected, location;
+    private String username, itemNameSelected, location, date;
     private double total;
     private List<MenuItem> shoppingCart;
     private TextView editTotal;
@@ -110,7 +110,7 @@ public class OrderCoffee extends AppCompatActivity{
     public void onSubmitOrderClicked(View view) {
         int orderID = 0;
         LcsSQLiteHandler dbHandler = new LcsSQLiteHandler(this);
-        String date = new SimpleDateFormat("MM-dd-yyyy", Locale.getDefault()).format(new Date());
+        date = new SimpleDateFormat("MM-dd-yyyy", Locale.getDefault()).format(new Date());
 
         if(shoppingCart.size() == 0) {
             onShoppingCartClicked(view);

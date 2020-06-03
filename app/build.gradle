@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.ryanconnors.cs360"
-        minSdkVersion 16
+        minSdkVersion 24
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -40,4 +40,5 @@ dependencies {
     implementation 'com.esotericsoftware.kryo:kryo:2.24.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
+
 }
