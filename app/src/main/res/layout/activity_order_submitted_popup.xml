@@ -7,6 +7,18 @@
     android:background="#FBCD89"
     tools:context=".OrderSubmittedPopup" >
 
+    <Button
+        android:id="@+id/add_to_calendar_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="96dp"
+        android:layout_marginLeft="96dp"
+        android:layout_marginTop="12dp"
+        android:onClick="onAddCalendarClicked"
+        android:text="@string/add_to_calendar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_location_textview" />
+
     <TextView
         android:id="@+id/order_submitted_textview"
         android:layout_width="185dp"
@@ -77,9 +89,9 @@
         android:id="@+id/return_to_main_menu_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:layout_marginLeft="68dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="68dp"
         android:onClick="onReturnToMainClicked"
         android:text="@string/return_main_menu"
         app:layout_constraintStart_toStartOf="parent"
