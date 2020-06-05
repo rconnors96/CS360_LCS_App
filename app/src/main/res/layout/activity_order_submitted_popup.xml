@@ -7,6 +7,16 @@
     android:background="#FBCD89"
     tools:context=".OrderSubmittedPopup" >
 
+    <TextView
+        android:id="@+id/edit_time_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/time"
+        app:layout_constraintStart_toEndOf="@+id/date_textview"
+        app:layout_constraintTop_toBottomOf="@+id/order_submitted_cart_list" />
+
     <Button
         android:id="@+id/add_to_calendar_button"
         android:layout_width="wrap_content"

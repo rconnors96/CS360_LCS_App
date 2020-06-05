@@ -16,8 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderSubmittedPopup extends AppCompatActivity {
-    private String username, location, date;
+    private String username, locationName, locationAddress, date, time;
     private int month, day, year;
+    private int hour, minute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,19 +33,25 @@ public class OrderSubmittedPopup extends AppCompatActivity {
         getSupportActionBar().hide();
 
         username = getIntent().getStringExtra("EXTRA_USERNAME");
-        location = getIntent().getStringExtra("EXTRA_LOCATION");
+        locationName = getIntent().getStringExtra("EXTRA_LOCATION_NAME");
+        locationAddress = getIntent().getStringExtra("EXTRA_LOCATION_ADDRESS");
         String[] shoppingCartDisplay = getIntent().getStringArrayExtra("EXTRA_SHOPPING_CART_DISPLAY");
         date = getIntent().getStringExtra("EXTRA_DATE");
+        time = getIntent().getStringExtra("EXTRA_TIME");
+        hour = getIntent().getIntExtra("EXTRA_HOUR", 1);
+        minute = getIntent().getIntExtra("EXTRA_MINUTE", 1);
 
 
         ListView orderSubmittedListView = findViewById(R.id.order_submitted_cart_list);
         TextView editDate = findViewById(R.id.edit_date_textview);
         TextView editLocation = findViewById(R.id.edit_location_textview);
+        TextView editTime = findViewById(R.id.edit_time_textview);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, shoppingCartDisplay);
         orderSubmittedListView.setAdapter(adapter);
         editDate.setText(date);
-        editLocation.setText(location);
+        editTime.setText(time);
+        editLocation.setText(locationName);
         }
 
 
@@ -59,15 +66,15 @@ public class OrderSubmittedPopup extends AppCompatActivity {
         public void onAddCalendarClicked(View view) {
             setMonthDayYear(date);
             Calendar beginTime = Calendar.getInstance();
-            beginTime.set(year, month, day, 12, 0);
+            beginTime.set(year, month, day, hour, minute);
             Calendar endTime = Calendar.getInstance();
-            endTime.set(year, month, day,13,0);
+            endTime.set(year, month, day,hour+1,minute);
             Intent intent = new Intent(Intent.ACTION_INSERT)
                     .setData(CalendarContract.Events.CONTENT_URI)
                     .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginTime.getTimeInMillis())
                     .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime.getTimeInMillis())
-                    .putExtra(CalendarContract.Events.TITLE, "Pickup Order")
-                    .putExtra(CalendarContract.Events.EVENT_LOCATION, location)
+                    .putExtra(CalendarContract.Events.TITLE, "Pickup order from " + locationName)
+                    .putExtra(CalendarContract.Events.EVENT_LOCATION, locationAddress)
                     .putExtra(CalendarContract.Events.AVAILABILITY, CalendarContract.Events.AVAILABILITY_BUSY);
             startActivity(intent);
 
