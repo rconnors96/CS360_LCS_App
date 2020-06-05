@@ -34,7 +34,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private PlacesClient placesClient;
     private AutocompleteSupportFragment autocompleteSupportFragment;
     private LatLng latLng;
-    private String address, name;
+    private String locationAddress, locationName;
     private TextView editLocationTextview;
     private Button selectThisLocationButton;
     private Resources res;
@@ -79,15 +79,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 //assigns different elements of the Place selected
                 latLng = place.getLatLng();
-                address = place.getAddress();
-                name = place.getName();
+                locationAddress = place.getAddress();
+                locationName = place.getName();
 
                 //moves the marker and camera to the selected location
-                mMap.addMarker(new MarkerOptions().position(latLng).title(name));
+                mMap.addMarker(new MarkerOptions().position(latLng).title(locationName));
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
 
                 //sets the selected location textview text, and makes both that and the button visible
-                editLocationTextview.setText(String.format(res.getString(R.string.display_location), name, address));
+                editLocationTextview.setText(String.format(res.getString(R.string.display_location), locationName, locationAddress));
                 editLocationTextview.setVisibility(View.VISIBLE);
                 selectThisLocationButton.setVisibility(View.VISIBLE);
             }
@@ -122,9 +122,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
     public void onSelectThisLocationClicked(View view) {
-        Intent intent = new Intent(this, OrderCoffee.class);
+        Intent intent = new Intent(this, DateAndTimeActivity.class);
         intent.putExtra("EXTRA_USERNAME", username);
-        intent.putExtra("EXTRA_LOCATION", name + " (" + address + ")");
+        intent.putExtra("EXTRA_LOCATION_NAME", locationName);
+        intent.putExtra("EXTRA_LOCATION_ADDRESS", locationAddress);
         startActivity(intent);
     }
 

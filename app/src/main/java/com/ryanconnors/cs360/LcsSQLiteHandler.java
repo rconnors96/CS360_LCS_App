@@ -31,6 +31,7 @@ public class LcsSQLiteHandler extends SQLiteOpenHelper {
                 OrdersTable.Cols.MENU_ID + ", " +
                 OrdersTable.Cols.USERNAME + ", " +
                 OrdersTable.Cols.DATE + "," +
+                OrdersTable.Cols.TIME + "," +
                 OrdersTable.Cols.LOCATION + "," +
                 " FOREIGN KEY (" + OrdersTable.Cols.MENU_ID + ") REFERENCES " +
                 MenuTable.NAME + "(" + MenuTable.Cols.MENU_ID + "))"

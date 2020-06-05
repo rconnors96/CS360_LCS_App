@@ -28,12 +28,18 @@ import java.util.Map;
 public class OrderCoffee extends AppCompatActivity{
     private SQLiteDatabase ordersDB;
     private List<MenuItem> menuItems;
-    private String[] menuItemNames;
-    private String username, itemNameSelected, location, date;
+    private String username;
+    private String itemNameSelected;
+    private String locationName;
+    private String locationAddress;
+    private String monthAsString;
+    private String dayAsString;
+    private int hour;
+    private int minute;
+    private int year;
     private double total;
     private List<MenuItem> shoppingCart;
     private TextView editTotal;
-    private Resources res;
 
 
     @Override
@@ -49,17 +55,27 @@ public class OrderCoffee extends AppCompatActivity{
         username = getIntent().getStringExtra("EXTRA_USERNAME");
 
         //get location
-        location = getIntent().getStringExtra("EXTRA_LOCATION");
+        locationName = getIntent().getStringExtra("EXTRA_LOCATION_NAME");
+        locationAddress = getIntent().getStringExtra("EXTRA_LOCATION_ADDRESS");
+
+        //get date and time
+        hour = getIntent().getIntExtra("EXTRA_HOUR",1);
+        minute = getIntent().getIntExtra("EXTRA_MINUTE",1);
+        int month = getIntent().getIntExtra("EXTRA_MONTH", 1);
+        monthAsString = monthToString(month);
+        int day = getIntent().getIntExtra("EXTRA_DAY", 1);
+        dayAsString = dayToString(day);
+        year = getIntent().getIntExtra("EXTRA_YEAR",1);
 
         //get writable orders database
         ordersDB = new LcsSQLiteHandler(this).getWritableDatabase();
 
         //get Resources
-        res = this.getResources();
+        Resources res = this.getResources();
 
         //get all items on menu, then get the unique names and put them in a String array
         menuItems = getListMenuItems();
-        menuItemNames = getMenuItemNames(menuItems);
+        String[] menuItemNames = getMenuItemNames(menuItems);
         ListView menuListView = findViewById(R.id.menu_items_listview);
         editTotal = findViewById(R.id.edit_total_textview);
         editTotal.setText(String.format(res.getString(R.string.dollar_amount), 0.00));
@@ -75,6 +91,22 @@ public class OrderCoffee extends AppCompatActivity{
         });
     }
 
+    public String dayToString(int day) {
+        if (day < 9) {
+            return "0" + (day+1);
+        } else {
+            return "" + (day+1);
+        }
+    }
+
+
+    public String monthToString(int month) {
+        if (month < 9) {
+            return "0" + (month+1);
+        } else {
+            return "" + (month+1);
+        }
+    }
 
     public void onGoBackClicked(View view) {
         Intent intent = new Intent(this, MapsActivity.class);
@@ -110,7 +142,8 @@ public class OrderCoffee extends AppCompatActivity{
     public void onSubmitOrderClicked(View view) {
         int orderID = 0;
         LcsSQLiteHandler dbHandler = new LcsSQLiteHandler(this);
-        date = new SimpleDateFormat("MM-dd-yyyy", Locale.getDefault()).format(new Date());
+        String date = monthAsString + "-" + dayAsString + "-" + year;
+        String time = hour + ":" + minute;
 
         if(shoppingCart.size() == 0) {
             onShoppingCartClicked(view);
@@ -127,7 +160,8 @@ public class OrderCoffee extends AppCompatActivity{
 
             //INSERTS SHOPPING CART ITEMS INTO ORDERS TABLE
             for (MenuItem currentItem : shoppingCart) {
-                addOrdersItem(getOrdersContentValues(orderID, currentItem.getMENU_ID(),username,date, location));
+                addOrdersItem(getOrdersContentValues(orderID, currentItem.getMENU_ID(), username,
+                        date, time, locationName));
             }
             dbHandler.close();
 
@@ -140,19 +174,24 @@ public class OrderCoffee extends AppCompatActivity{
             intent.putExtra("EXTRA_SHOPPING_CART_DISPLAY", extraShoppingCartDisplay);
             intent.putExtra("EXTRA_USERNAME", username);
             intent.putExtra("EXTRA_DATE", date);
-            intent.putExtra("EXTRA_LOCATION", location);
+            intent.putExtra("EXTRA_TIME", time);
+            intent.putExtra("EXTRA_LOCATION_NAME", locationName);
+            intent.putExtra("EXTRA_LOCATION_ADDRESS", locationAddress);
+            intent.putExtra("EXTRA_HOUR", hour);
+            intent.putExtra("EXTRA_MINUTE", minute);
             startActivity(intent);
         }
 
     }
 
 
-    private ContentValues getOrdersContentValues(int order_id, String menu_id, String username, String date, String location) {
+    private ContentValues getOrdersContentValues(int order_id, String menu_id, String username, String date, String time, String location) {
         ContentValues values = new ContentValues();
         values.put(OrdersTable.Cols.ORDER_ID, order_id);
         values.put(OrdersTable.Cols.MENU_ID, menu_id);
         values.put(OrdersTable.Cols.USERNAME, username);
         values.put(OrdersTable.Cols.DATE, date);
+        values.put(OrdersTable.Cols.TIME, time);
         values.put(OrdersTable.Cols.LOCATION, location);
 
         return values;
@@ -233,24 +272,4 @@ public class OrderCoffee extends AppCompatActivity{
         }
         return menuItems;
     }
-
-
-    /*
-    public String getAllDataString(String tableName) {
-        Cursor cursor = getAllDataCursor(tableName);
-        if (cursor.getCount() == 0) {
-            return "NO DATA";
-        }
-        StringBuilder sb = new StringBuilder();
-        while (cursor.moveToNext()) {
-            sb.append("menu_id: " + cursor.getString(0));
-            sb.append("..type: " + cursor.getString(1));
-            sb.append("..item_name: " + cursor.getString(2));
-            sb.append("..size: " + cursor.getString(3));
-            sb.append("..price: " + cursor.getString(4));
-        }
-
-        return sb.toString();
-    }
-    */
 }
