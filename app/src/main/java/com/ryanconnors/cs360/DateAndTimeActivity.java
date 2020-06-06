@@ -1,22 +1,16 @@
 package com.ryanconnors.cs360;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
-
-import android.app.Dialog;
-import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.icu.util.Calendar;
 import android.os.Bundle;
-import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class DateAndTimeActivity extends AppCompatActivity {
 
     private String username, locationName, locationAddress;
-    private int hourOfDay, minute;
     private TimePicker timePicker;
     private DatePicker datePicker;
 
@@ -24,12 +18,14 @@ public class DateAndTimeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_date_and_time);
+
+        //hides blue title bar
         getSupportActionBar().hide();
 
         timePicker = findViewById(R.id.timePicker);
         datePicker = findViewById(R.id.datePicker);
 
-
+        //gets values from intent
         username = getIntent().getStringExtra("EXTRA_USERNAME");
         locationName = getIntent().getStringExtra("EXTRA_LOCATION_NAME");
         locationAddress = getIntent().getStringExtra("EXTRA_LOCATION_ADDRESS");
@@ -38,14 +34,15 @@ public class DateAndTimeActivity extends AppCompatActivity {
 
     public void onSelectClicked(View view) {
 
+        //obtain values from DatePicker and TimePicker
         int hourOfDay = timePicker.getHour();
         int minute = timePicker.getMinute();
-
         int month = datePicker.getMonth();
         int day = datePicker.getDayOfMonth();
         int year = datePicker.getYear();
 
 
+        //puts all known values as intent extras to be sent to OrderCoffee
         Intent intent = new Intent(this, OrderCoffee.class);
         intent.putExtra("EXTRA_USERNAME", username);
         intent.putExtra("EXTRA_LOCATION_NAME", locationName);
