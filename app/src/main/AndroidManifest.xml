@@ -15,7 +15,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DateAndTimeActivity"></activity>
+        <activity android:name=".FacebookShareActivity"></activity>
+
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider{260152128545711}"
+            android:exported="true" />
+
+        <activity android:name=".DateAndTimeActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -45,10 +52,10 @@
         </activity>
         <activity
             android:name=".OrderCoffee"
-            android:label="@string/order_coffee_text"></activity>
+            android:label="@string/order_coffee_text" />
         <activity
             android:name=".ViewOrders"
-            android:label="@string/view_orders_name"></activity>
+            android:label="@string/view_orders_name" />
         <activity android:name=".MainMenuActivity" />
     </application>
 
